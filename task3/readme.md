@@ -104,3 +104,19 @@ And for 7:
 +-------------+------+-------+----------+------+------+------+------+
 ```
 And so on (you need to support any odd move number). Of course, for large values it would be nice to implement some kind of pagination, but it's out of the scope of the basic task (you may consider it as an optional "for the highest grade" problem).
+
+
+To submit the solution  you need to send an e-mail to **p.lebedev@itransition.com** with the following:
+1. link to a video demonstrating launch with 3 and 7 parameters, launch with incorrect parameters (repeated or even number, one or no), help table generation (on 5 parameters), choice of the user move, output of results;
+2. link to Github public repository.
+
+> ***Make the video publicly accessible***. Don't try to share your video with my work e-mail or something. Make your video _public_.
+
+And as an explanation: when calculating HMAC, the key is the same secret key that you generated. And the message is a move string. After own move the user obtains a key and the computer's move& And the user will be able to calculate the HMAC and compare with the HMAC that was shown before the user's move. It's not very difficult 🙂
+
+A common mistake is trying to invent your "HMAC" as a hash of a random "key". This will not work. If you show the same lines before the move and after the move, the user does not receive new information after the move and, accordingly, you do not prove anything to him. It is necessary to generate a key (with a secure generator), make a computer move, calculate HMAC (by a standard algorithm) from a computer move (message) and a key (key), show HMAC, get a user move, show a key. Re-read this paragraph until the total comprehension.
+
+The example of the "correct" order (although the user may use a different order and play a game of scissors defeating rock; or play a game of MOVE1 MOVE2 MOVE3): STONE PAPER SCISSORS or STONE SPOCK PAPER LIZARD SCISSORS.
+
+What is this task for? You need to understand hash function a little bit deeper, understand whay they are for, add HMAC idea, learn to think how the exact sequence of steps can give you some kind of prove or contract, work with external libraries, touch some basics of OOP and a few other things.
+
